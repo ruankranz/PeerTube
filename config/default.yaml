@@ -137,7 +137,7 @@ tracker:
   # Only handle requests on your videos.
   # If you set this to false it means you have a public tracker.
   # Then, it is possible that clients overload your instance with external torrents
-  private: true
+  private: false
   # Reject peers that do a lot of announces (could improve privacy of TCP/UDP peers)
   reject_too_many_announces: false
 

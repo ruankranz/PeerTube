@@ -294,7 +294,7 @@ export class PeertubePlayerManager {
         trackerAnnounce,
         segmentValidator: segmentValidatorFactory(options.p2pMediaLoader.segmentsSha256Url),
         rtcConfig: getRtcConfig(),
-        requiredSegmentsPriority: 5,
+        requiredSegmentsPriority: 1,
         segmentUrlBuilder: segmentUrlBuilderFactory(redundancyUrlManager),
         useP2P: getStoredP2PEnabled(),
         consumeOnly
@@ -306,6 +306,7 @@ export class PeertubePlayerManager {
     const hlsjs = {
       levelLabelHandler: (level: { height: number, width: number }) => {
         const file = p2pMediaLoaderOptions.videoFiles.find(f => f.resolution.id === level.height)
+        if (!file) return
 
         let label = file.resolution.label
         if (file.fps >= 50) label += file.fps
@@ -316,7 +317,7 @@ export class PeertubePlayerManager {
         hlsjsConfig: {
           capLevelToPlayerSize: true,
           autoStartLoad: false,
-          liveSyncDurationCount: 7,
+          liveSyncDurationCount: 5,
           loader: new p2pMediaLoaderModule.Engine(p2pMediaLoaderConfig).createLoaderClass()
         }
       }

@@ -201,7 +201,7 @@ export class PeerTubeEmbed {
         subtitle: this.subtitle,
 
         videoCaptions,
-        inactivityTimeout: 1500,
+        inactivityTimeout: 1500000,
         videoViewUrl: this.getVideoUrl(videoId) + '/views',
 
         playerElement: this.videoElement,
@@ -228,9 +228,9 @@ export class PeerTubeEmbed {
 
       Object.assign(options, {
         p2pMediaLoader: {
-          playlistUrl: hlsPlaylist.playlistUrl,
+          playlistUrl: 'http://localhost:9000/live/toto/master.m3u8',
           segmentsSha256Url: hlsPlaylist.segmentsSha256Url,
-          redundancyBaseUrls: hlsPlaylist.redundancies.map(r => r.baseUrl),
+          redundancyBaseUrls: [],
           trackerAnnounce: videoInfo.trackerUrls,
           videoFiles: hlsPlaylist.files
         } as P2PMediaLoaderOptions
